@@ -31,10 +31,12 @@ runs:
 
     - name: Run SPEC-0 checker
       shell: bash
-      env:
-        SPEC0_DRY_RUN: ${{ inputs.dry_run }}
-        GITHUB_TOKEN: ${{ inputs.github_token }}
-        GITHUB_REPOSITORY: ${{ inputs.github_repository }}
       run: |
-        echo "TOKEN = ${github_token}"
-        python ${{ github.action_path }}/spec0_bot.py ${{ inputs.path }} 
+        export SPEC0_DRY_RUN="${{ inputs.dry_run }}"
+        export GITHUB_TOKEN="${{ inputs.github_token }}"
+        export GITHUB_REPOSITORY="${{ inputs.github_repository }}"
+    
+        echo "TOKEN = $GITHUB_TOKEN"
+        echo "REPO  = $GITHUB_REPOSITORY"
+        python ${{ github.action_path }}/spec0_bot.py ${{ inputs.path }}
+     
