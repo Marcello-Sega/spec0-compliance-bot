@@ -1,0 +1,19 @@
+jobs:
+  spec0:
+    runs-on: ubuntu-latest
+
+    steps:      
+      - name: Run SPEC-0 Compliance Bot
+        uses: Marcello-Sega/spec0-compliance-bot@v0.2
+        with:
+          path: .
+          dry_run: "false"
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          trigger_branch: ${{ github.ref_name }}
+
+      
+        env:
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          TRIGGER_BRANCH: ${{ github.ref_name }}
+
+          

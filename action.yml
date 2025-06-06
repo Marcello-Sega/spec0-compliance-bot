@@ -1,0 +1,45 @@
+name: 'SPEC-0 Compliance Bot'
+description: 'Checks Python dependencies and updates outdated ones per SPEC-0 guidelines.'
+author: 'Marcello Sega'
+
+inputs:
+  path:
+    description: 'Path to the directory containing Python dependency files'
+    required: false
+    default: '.'
+  github_token:
+    description: 'GitHub token for API access'
+    required: true
+  trigger_branch:
+    description: 'branch from which this was called'
+    required: true
+  dry_run:
+    description: 'If true, does not commit or open PRs'
+    required: false
+    default: 'false'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Install dependencies
+      shell: bash
+      run: pip install toml packaging requests PyGithub
+
+    - name: Run SPEC-0 compliance check
+      shell: bash
+      env:
+        GITHUB_TOKEN: ${{ inputs.github_token }}
+      run: |
+        echo "Running SPEC-0 compliance check in path: ${{ inputs.path }}"
+        export TRIGGER_BRANCH="${{ inputs.trigger_branch }}"
+        echo "Dry run mode: ${{ inputs.dry_run }}"
+        echo "GITHUB_TOKEN is set? ${#GITHUB_TOKEN}"       
+        echo "GITHUB_REPOSITORY is: ${GITHUB_REPOSITORY}"
+        echo "TRIGGER_BRANCH is: ${TRIGGER_BRANCH}"
+        export SPEC0_DRY_RUN="${{ inputs.dry_run }}"
+        python ${{ github.action_path }}/spec0_bot.py ${{ inputs.path }} 
