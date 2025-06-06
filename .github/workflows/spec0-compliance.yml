@@ -7,5 +7,4 @@
 
   env:
     GITHUB_REPOSITORY: ${{ github.repository }}
-    GITHUB_TOKEN: ${{ github.token }}
     
