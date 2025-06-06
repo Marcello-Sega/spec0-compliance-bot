@@ -1,14 +1,19 @@
 name: 'SPEC-0 Compliance Bot'
-description: 'Checks Python dependencies for age and flags outdated ones per SPEC-0 guidelines.'
+description: 'Checks Python dependencies and updates outdated ones per SPEC-0 guidelines.'
 author: 'Marcello Sega'
+
 inputs:
   path:
-    description: 'Path to the dependency files (default: .)'
+    description: 'Path to the directory containing Python dependency files'
     required: false
     default: '.'
-    
+  dry_run:
+    description: 'If true, does not commit or open PRs'
+    required: false
+    default: 'true'
+
 runs:
-  using: "composite"
+  using: 'composite'
   steps:
     - name: Set up Python
       uses: actions/setup-python@v4
@@ -19,16 +24,14 @@ runs:
       shell: bash
       run: pip install toml packaging requests PyGithub
 
-    - name: Run SPEC-0 checker
+    - name: Run SPEC-0 compliance check
       shell: bash
-      env:
-        GITHUB_TOKEN: ${{GITHUB_TOKEN_FROMWORKFLOW}}
-        GITHUB_REPO: ${{GITHUB_REPOSITORY_FROMWORKFLOW}}
-        SPEC0_DRY_RUN: ${{SPEC0_DRY_RUN_FROMWORKFLOW}}
       run: |
-        echo "TOKEN = $GITHUB_TOKEN"
-        echo "REPO  = $GITHUB_REPOSITORY"
-        echo "DRY   = $SPEC0_DRY_RUN"
-        
+        echo "Running SPEC-0 compliance check in path: ${{ inputs.path }}"
+        echo "Dry run mode: ${{ inputs.dry_run }}"
+
+        export GITHUB_TOKEN="$GITHUB_TOKEN"
+        export GITHUB_REPOSITORY="$GITHUB_REPOSITORY"
+        export SPEC0_DRY_RUN="${{ inputs.dry_run }}"
+
         python ${{ github.action_path }}/spec0_bot.py ${{ inputs.path }}
-     
