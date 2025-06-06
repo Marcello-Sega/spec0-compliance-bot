@@ -1,25 +1,7 @@
-name: SPEC-0 Compliance Bot
-
-on:
-  push:
-  pull_request:
-  workflow_dispatch:
-
-jobs:
-  spec0-compliance:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Install Python dependencies
-        run: pip install requests packaging toml PyGithub
-
-      - name: Run SPEC-0 Compliance Bot
-        uses: Marcello-Sega/spec0-compliance-bot@v0.2
-        with:
-          path: .
-        env:
-          GITHUB_TOKEN_FROMWORKFLOW: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_REPOSITORY_FROMWORKFLOW: ${{ github.repository }}
-          SPEC0_DRY_RUN_FROMWORKFLOW: "false"
-
+- uses: Marcello-Sega/spec0-compliance-bot@v0.2
+  with:
+    path: .
+    dry_run: "false"
+  env:
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    GITHUB_REPOSITORY: ${{ github.repository }}
