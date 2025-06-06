@@ -23,8 +23,6 @@ jobs:
       - name: Run SPEC-0 Compliance Bot
         uses: Marcello-Sega/spec0-compliance-bot@v0.2
         with:
-          path: .
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_REPOSITORY: ${{ github.repository }}
-          SPEC0_DRY_RUN: "false"
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_repository: ${{ github.repository }}
+          dry_run: "false"
