@@ -24,7 +24,7 @@ runs:
       env:
         SPEC0_DRY_RUN: "false" 
         GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
-        GITHUB_REPOSITORY: ${{ env.repository }}
+        GITHUB_REPOSITORY: ${{ env.GITHUB_REPOSITORY }}
       run: |
-        echo "TOKEN = ${{GITHUB_TOKEN}}"
-        python ${{ github.action_path }}/spec0_bot.py ${{ inputs.path }} ${{GITHUB_TOKEN}} ${{GITHUB_REPOSITORY}}
+        echo "TOKEN = ${GITHUB_TOKEN}"
+        python ${{ github.action_path }}/spec0_bot.py ${{ inputs.path }} ${GITHUB_TOKEN} ${GITHUB_REPOSITORY}
