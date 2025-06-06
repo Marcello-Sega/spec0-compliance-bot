@@ -3,9 +3,9 @@
   with:
     path: .
     dry_run: "false"
+    github_token: ${{ secrets.GITHUB_TOKEN }}
+
   env:
     GITHUB_REPOSITORY: ${{ github.repository }}
     GITHUB_TOKEN: ${{ github.token }}
-
-
- 
+    
