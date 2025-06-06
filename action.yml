@@ -7,7 +7,7 @@ inputs:
     description: 'Path to the directory containing Python dependency files'
     required: false
     default: '.'
-  github_token:
+  token:
     description: 'GitHub token for API access'
     required: true
   dry_run:
@@ -29,13 +29,15 @@ runs:
 
     - name: Run SPEC-0 compliance check
       shell: bash
+      env:
+        GITHUB_TOKEN: ${{ inputs.token }}
       run: |
         echo "Running SPEC-0 compliance check in path: ${{ inputs.path }}"
         echo "Dry run mode: ${{ inputs.dry_run }}"
 
         # These will be inherited from the workflow's `env:` section
         echo "GITHUB_REPOSITORY is: ${GITHUB_REPOSITORY}"
-        export GITHUB_TOKEN="${{ inputs.github_token }}"
+        echo  "GITHUB_TOKEN is ${GITHUB_TOKEN}"
         export SPEC0_DRY_RUN="${{ inputs.dry_run }}"
 
 
