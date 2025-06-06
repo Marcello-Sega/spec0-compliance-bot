@@ -29,12 +29,12 @@ runs:
 
     - name: Run SPEC-0 compliance check
       shell: bash
-      env:
-        GITHUB_TOKEN: ${{ inputs.token }}
+  #    env:
+  #      GITHUB_TOKEN: ${{ inputs.token }}
       run: |
         echo "Running SPEC-0 compliance check in path: ${{ inputs.path }}"
         echo "Dry run mode: ${{ inputs.dry_run }}"
-
+        export GITHUB_TOKEN="${{ inputs.token }}"
         # These will be inherited from the workflow's `env:` section
         echo "GITHUB_REPOSITORY is: ${GITHUB_REPOSITORY}"
         echo  "GITHUB_TOKEN is ${GITHUB_TOKEN}"
