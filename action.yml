@@ -10,6 +10,7 @@ inputs:
   token:
     description: 'GitHub token for API access'
     required: true
+    default: '.'
   dry_run:
     description: 'If true, does not commit or open PRs'
     required: false
@@ -29,8 +30,9 @@ runs:
 
     - name: Run SPEC-0 compliance check
       shell: bash
-  #    env:
-  #      GITHUB_TOKEN: ${{ inputs.token }}
+      env:
+        GITHUB_TOKEN: ${{ inputs.token }}
+
       run: |
         echo "Running SPEC-0 compliance check in path: ${{ inputs.path }}"
         echo "Dry run mode: ${{ inputs.dry_run }}"
@@ -40,5 +42,4 @@ runs:
         echo  "GITHUB_TOKEN is ${GITHUB_TOKEN}"
         export SPEC0_DRY_RUN="${{ inputs.dry_run }}"
 
-
-        python ${{ github.action_path }}/spec0_bot.py ${{ inputs.path }}
+        pipenv run python ${{ github.action_path }}/spec0_bot.py ${{ inputs.path }}
