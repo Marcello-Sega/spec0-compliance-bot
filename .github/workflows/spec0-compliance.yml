@@ -19,7 +19,7 @@ jobs:
         with:
           path: .
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_REPOSITORY: ${{ github.repository }}
-          SPEC0_DRY_RUN: "false"
+          GITHUB_TOKEN_FROMWORKFLOW: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY_FROMWORKFLOW: ${{ github.repository }}
+          SPEC0_DRY_RUN_FROMWORKFLOW: "false"
 
