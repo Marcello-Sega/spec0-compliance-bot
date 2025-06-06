@@ -14,11 +14,16 @@ jobs:
       - name: Install Python dependencies
         run: pip install requests packaging toml PyGithub
 
+      - name: Debug environment values before action
+        run: |
+          echo "GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}"
+          echo "GITHUB_REPOSITORY=${{ github.repository }}"
+          echo "SPEC0_DRY_RUN=false"
+
       - name: Run SPEC-0 Compliance Bot
         uses: ./  # uses local action (for testing)
         with:
           path: .
-
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
