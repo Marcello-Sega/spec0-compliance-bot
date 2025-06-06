@@ -31,7 +31,6 @@ runs:
         echo "Dry run mode: ${{ inputs.dry_run }}"
 
         # These will be inherited from the workflow's `env:` section
-        echo "GITHUB_TOKEN is: ${{GITHUB_TOKEN}}"
         echo "GITHUB_REPOSITORY is: ${GITHUB_REPOSITORY}"
 
         export SPEC0_DRY_RUN="${{ inputs.dry_run }}"
