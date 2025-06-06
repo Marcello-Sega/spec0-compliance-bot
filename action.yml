@@ -33,8 +33,8 @@ runs:
       shell: bash
       env:
         SPEC0_DRY_RUN: ${{ inputs.dry_run }}
-        GITHUB_TOKEN: ${{ inputs.GITHUB_TOKEN }}
-        GITHUB_REPOSITORY: ${{ inputs.GITHUB_REPOSITORY }}
+        GITHUB_TOKEN: ${{ inputs.github_token }}
+        GITHUB_REPOSITORY: ${{ inputs.github_repository }}
       run: |
-        echo "TOKEN = ${GITHUB_TOKEN}"
+        echo "TOKEN = ${github_token}"
         python ${{ github.action_path }}/spec0_bot.py ${{ inputs.path }} ${GITHUB_TOKEN} ${GITHUB_REPOSITORY}
