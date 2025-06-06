@@ -1,0 +1,21 @@
+name: SPEC-0 Compliance Bot
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  spec0-compliance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Run SPEC-0 Compliance Bot
+        uses: ./  # uses local action (for testing)
+        with:
+          path: .
+
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          SPEC0_DRY_RUN: "false"
