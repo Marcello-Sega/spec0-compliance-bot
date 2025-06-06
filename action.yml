@@ -6,16 +6,6 @@ inputs:
     description: 'Path to the dependency files (default: .)'
     required: false
     default: '.'
-  github_token:
-    description: 'GitHub token for API access'
-    required: true
-  github_repository:
-    description: 'Full repo name (owner/repo)'
-    required: true
-  dry_run:
-    description: 'Enable dry run mode'
-    required: false
-    default: "false"
     
 runs:
   using: "composite"
@@ -32,10 +22,6 @@ runs:
     - name: Run SPEC-0 checker
       shell: bash
       run: |
-        export SPEC0_DRY_RUN="${{ inputs.dry_run }}"
-        export GITHUB_TOKEN="${{ inputs.github_token }}"
-        export GITHUB_REPOSITORY="${{ inputs.github_repository }}"
-    
         echo "TOKEN = $GITHUB_TOKEN"
         echo "REPO  = $GITHUB_REPOSITORY"
         python ${{ github.action_path }}/spec0_bot.py ${{ inputs.path }}
