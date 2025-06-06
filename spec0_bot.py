@@ -11,8 +11,6 @@ try:
     from github import Github
 except ImportError:
     Github = None  # Let's do a dry-run
-print("ARGUMENTS")
-print(argv)
 
 SPEC0_DEP_AGE_YEARS = 2
 PYPI_URL = "https://pypi.org/pypi/{}/json"
