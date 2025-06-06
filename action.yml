@@ -23,5 +23,7 @@ runs:
       shell: bash
       env:
         SPEC0_DRY_RUN: ${{ env.SPEC0_DRY_RUN }}
+        GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
+        GITHUB_REPOSITORY: ${{ env.GITHUB_REPOSITORY }}
       run: |
         python ${{ github.action_path }}/spec0_bot.py ${{ inputs.path }}
