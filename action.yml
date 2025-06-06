@@ -10,7 +10,7 @@ inputs:
   dry_run:
     description: 'If true, does not commit or open PRs'
     required: false
-    default: 'true'
+    default: 'false'
 
 runs:
   using: 'composite'
