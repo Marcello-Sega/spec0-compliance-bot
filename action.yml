@@ -22,8 +22,8 @@ runs:
     - name: Run SPEC-0 checker
       shell: bash
       env:
-        SPEC0_DRY_RUN: ${{ env.SPEC0_DRY_RUN }}
-        GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
-        GITHUB_REPOSITORY: ${{ env.GITHUB_REPOSITORY }}
+        SPEC0_DRY_RUN: "false" 
+        GITHUB_TOKEN: ${{ secret.GITHUB_TOKEN }}
+        GITHUB_REPOSITORY: ${{ github.repository }}
       run: |
         python ${{ github.action_path }}/spec0_bot.py ${{ inputs.path }}
