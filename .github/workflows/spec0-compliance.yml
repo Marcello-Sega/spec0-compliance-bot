@@ -1,7 +1,18 @@
-- uses: Marcello-Sega/spec0-compliance-bot@v0.2
+- name: Run SPEC-0 Compliance Bot
+
+#- uses: Marcello-Sega/spec0-compliance-bot@v0.2
+#  with:
+#    path: .
+#    dry_run: "false"
+#  env:
+#    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#    GITHUB_REPOSITORY: ${{ github.repository }}
+
+  uses: Marcello-Sega/spec0-compliance-bot@v0.2
   with:
     path: .
     dry_run: "false"
+    github_token: ${{ secrets.GITHUB_TOKEN }}
+    github_repository: ${{ github.repository }}
   env:
     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    GITHUB_REPOSITORY: ${{ github.repository }}
