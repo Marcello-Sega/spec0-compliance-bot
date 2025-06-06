@@ -206,6 +206,10 @@ def commit_and_open_pr(branch="spec0-update", base="main", message="Update outda
     repo_name = os.getenv("GITHUB_REPOSITORY")
     if not token or not repo_name:
         print("Missing GITHUB_TOKEN or GITHUB_REPOSITORY.")
+        try: print(token)
+        except: print('missing token')
+        try: print(repo_name)
+        except: print('missing name')
         return
 
     gh = Github(token)
