@@ -21,8 +21,14 @@ runs:
 
     - name: Run SPEC-0 checker
       shell: bash
+      env:
+        GITHUB_TOKEN: $GITHUB_TOKEN_FROMWORKFLOW
+        GITHUB_REPO: $GITHUB_REPOSITORY_FROMWORKFLOW
+        SPEC0_DRY_RUN: $SPEC0_DRY_RUN_FROMWORKFLOW
       run: |
         echo "TOKEN = $GITHUB_TOKEN"
         echo "REPO  = $GITHUB_REPOSITORY"
+        echo "DRY   = $SPEC0_DRY_RUN"
+        
         python ${{ github.action_path }}/spec0_bot.py ${{ inputs.path }}
      
