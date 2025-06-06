@@ -21,5 +21,7 @@ runs:
 
     - name: Run SPEC-0 checker
       shell: bash
+      env:
+        SPEC0_DRY_RUN: ${{ env.SPEC0_DRY_RUN }}
       run: |
         python ${{ github.action_path }}/spec0_bot.py ${{ inputs.path }}
