@@ -3,6 +3,7 @@ name: SPEC-0 Compliance Bot
 on:
   push:
   pull_request:
+  workflow_dispatch:
 
 jobs:
   spec0-compliance:
