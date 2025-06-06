@@ -30,8 +30,11 @@ runs:
         echo "Running SPEC-0 compliance check in path: ${{ inputs.path }}"
         echo "Dry run mode: ${{ inputs.dry_run }}"
 
-        export GITHUB_TOKEN="$GITHUB_TOKEN"
-        export GITHUB_REPOSITORY="$GITHUB_REPOSITORY"
+        # These will be inherited from the workflow's `env:` section
+        echo "GITHUB_TOKEN is: ${GITHUB_TOKEN:0:4}****"
+        echo "GITHUB_REPOSITORY is: $GITHUB_REPOSITORY"
+
         export SPEC0_DRY_RUN="${{ inputs.dry_run }}"
+
 
         python ${{ github.action_path }}/spec0_bot.py ${{ inputs.path }}
