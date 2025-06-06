@@ -14,12 +14,6 @@ jobs:
       - name: Install Python dependencies
         run: pip install requests packaging toml PyGithub
 
-      - name: Debug environment values before action
-        run: |
-          echo "GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}"
-          echo "GITHUB_REPOSITORY=${{ github.repository }}"
-          echo "SPEC0_DRY_RUN=false"
-
       - name: Run SPEC-0 Compliance Bot
         uses: Marcello-Sega/spec0-compliance-bot@v0.2
         with:
