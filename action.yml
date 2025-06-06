@@ -1,0 +1,24 @@
+name: 'SPEC-0 Compliance Bot'
+description: 'Checks Python dependencies for age and flags outdated ones per SPEC-0 guidelines.'
+author: 'Marcello Sega'
+inputs:
+  path:
+    description: 'Path to the dependency files (default: .)'
+    required: false
+    default: '.'
+
+runs:
+  using: "composite"
+  steps:
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Install dependencies
+      run: pip install toml packaging requests
+
+    - name: Run SPEC-0 checker
+      shell: bash
+      run: |
+        python ${{ github.action_path }}/spec0_bot.py ${{ inputs.path }}
