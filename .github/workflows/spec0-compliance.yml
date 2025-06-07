@@ -14,4 +14,6 @@ jobs:
       
         env:
           GITHUB_REPOSITORY: ${{ github.repository }}
+          TRIGGER_BRANCH: ${{ github.ref_name }}
+
           
