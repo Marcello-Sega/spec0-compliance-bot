@@ -10,7 +10,9 @@ inputs:
   github_token:
     description: 'GitHub token for API access'
     required: true
-    default: '.'
+  trigger_branch:
+    description: 'branch from which this was called'
+    required: true
   dry_run:
     description: 'If true, does not commit or open PRs'
     required: false
@@ -32,6 +34,7 @@ runs:
       shell: bash
       env:
         GITHUB_TOKEN: ${{ inputs.github_token }}
+        TRIGGER_BRANCH: ${{ inputs.trigger_branch }}
 
       run: |
         echo "Running SPEC-0 compliance check in path: ${{ inputs.path }}"
