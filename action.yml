@@ -42,4 +42,4 @@ runs:
         echo  "GITHUB_TOKEN is ${GITHUB_TOKEN}"
         export SPEC0_DRY_RUN="${{ inputs.dry_run }}"
 
-        pipenv run python ${{ github.action_path }}/spec0_bot.py ${{ inputs.path }}
+        python ${{ github.action_path }}/spec0_bot.py ${{ inputs.path }}
