@@ -186,7 +186,7 @@ def patch_setup_py(path, outdated, dry_run=False):
             f.writelines(new_lines)
 
 
-def commit_and_open_pr(branch="spec0-update", base="main", message="Update outdated dependencies (SPEC-0)", dry_run=False):
+def commit_and_open_pr(branch="spec0-update", message="Update outdated dependencies (SPEC-0)", dry_run=False):
     if dry_run:
         print("Dry run mode: skipping git and PR creation.")
         return
@@ -204,6 +204,7 @@ def commit_and_open_pr(branch="spec0-update", base="main", message="Update outda
 
     token = os.getenv("GITHUB_TOKEN")
     repo_name = os.getenv("GITHUB_REPOSITORY")
+    trigger_branch = os.getenv("TRIGGER_BRANCH")
     if not token or not repo_name:
         print("Missing GITHUB_TOKEN or GITHUB_REPOSITORY.")
         try: print(token)
@@ -218,7 +219,7 @@ def commit_and_open_pr(branch="spec0-update", base="main", message="Update outda
         title=message,
         body="Automatically opened by SPEC-0 compliance bot.",
         head=branch,
-        base=base,
+        base=trigger_branch,
     )
     print(f"Pull request created: {pr.html_url}")
 
