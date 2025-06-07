@@ -9,7 +9,7 @@ jobs:
           path: .
           dry_run: "false"
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          trigger_branch : ${{ github.ref_name }}
+          trigger_branch: ${{ github.ref_name }}
 
       
         env:
