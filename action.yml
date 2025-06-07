@@ -34,9 +34,9 @@ runs:
       shell: bash
       env:
         GITHUB_TOKEN: ${{ inputs.github_token }}
-        TRIGGER_BRANCH: ${{ inputs.trigger_branch }}
 
       run: |
+        export TRIGGER_BRANCH="${{ inputs.trigger_branch }}"
         echo "Running SPEC-0 compliance check in path: ${{ inputs.path }}"
         echo "Dry run mode: ${{ inputs.dry_run }}"
         echo "GITHUB_TOKEN is set? ${#GITHUB_TOKEN}"       
