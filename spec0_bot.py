@@ -233,6 +233,18 @@ def commit_and_open_pr(branch="spec0-update", message="Update outdated dependenc
         base=trigger_branch,
     )
     print(f"Pull request created: {pr.html_url}")
+     # Emit a GitHub Actions notice
+    print(f"::notice title=SPEC-0 Compliance::Pull request created: {pr.html_url}")
+
+    # Also output to GITHUB_OUTPUT
+    output_file = os.environ.get("GITHUB_OUTPUT")
+    if output_file:
+        with open(output_file, "a") as f:
+            print(f"spec0_pr_url={pr.html_url}", file=f)
+
+    print(f"Pull request created: {pr.html_url}")
+    # the test must fail at this point
+    sys.exit(1)
 
 def main(dry_run=False):
     print("Checking for SPEC-0 violations...\n")
