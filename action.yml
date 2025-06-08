@@ -34,7 +34,6 @@ runs:
       shell: bash
       env:
         GITHUB_TOKEN: ${{ inputs.github_token }}
-
       run: |
         export TRIGGER_BRANCH="${{ inputs.trigger_branch }}"
         echo "Running SPEC-0 compliance check in path: ${{ inputs.path }}"
@@ -43,5 +42,4 @@ runs:
         echo "GITHUB_REPOSITORY is: ${GITHUB_REPOSITORY}"
         echo "TRIGGER_BRANCH is: ${TRIGGER_BRANCH}"
         export SPEC0_DRY_RUN="${{ inputs.dry_run }}"
-
         python ${{ github.action_path }}/spec0_bot.py ${{ inputs.path }}
