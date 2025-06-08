@@ -206,9 +206,9 @@ def commit_and_open_pr(branch="spec0-update", message="Update outdated dependenc
     repo_name = os.getenv("GITHUB_REPOSITORY")
     trigger_branch = os.getenv("TRIGGER_BRANCH")
     
-    if not token raise ValueError("Missing GITHUB_TOKEN")  
-    if not repo_name raise ValueError("Missing GITHUB_TOKEN")  
-    if not trigger_branch raise ValueError("Missing TRIGGER_BRANCH")  
+    if not token: raise ValueError("Missing GITHUB_TOKEN")  
+    if not repo_name: raise ValueError("Missing GITHUB_TOKEN")  
+    if not trigger_branch: raise ValueError("Missing TRIGGER_BRANCH")  
 
     print("GITHUB_TOKEN",token)
     print("GITHUB_REPOSITORY",repo_name)
