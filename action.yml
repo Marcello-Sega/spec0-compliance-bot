@@ -2,6 +2,10 @@ name: 'SPEC-0 Compliance Bot'
 description: 'Checks Python dependencies and updates outdated ones per SPEC-0 guidelines.'
 author: 'Marcello Sega'
 
+outputs:
+  spec0_pr_url:
+    description: 'URL of the pull request opened by the compliance bot'
+
 inputs:
   path:
     description: 'Path to the directory containing Python dependency files'
