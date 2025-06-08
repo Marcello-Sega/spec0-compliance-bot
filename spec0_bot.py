@@ -7,6 +7,12 @@ from packaging.requirements import Requirement
 from packaging.version import Version
 import uuid
 import toml
+import logging
+logging.basicConfig(level=logging.INFO)
+import sys
+import functools
+print = functools.partial(print, flush=True)
+
 try:
     from github import Github
 except ImportError:
